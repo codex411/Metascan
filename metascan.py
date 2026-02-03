@@ -28,6 +28,10 @@ from markups import filtershtml, rawmetahtml, hexmetahtml, statshtml
 from shutil import copyfile
 
 def credits():
+	"""
+	Display application banner and welcome information.
+	Prompts user to ensure files are placed in the media directory.
+	"""
 	print("")
 	print("")
 	print("███╗   ███╗███████╗████████╗ █████╗ ███████╗ ██████╗ ███████╗ █████╗ ███╗   ██╗")
@@ -53,6 +57,10 @@ def credits():
 	print()
 	
 def condchecking():
+	"""
+	Verify system conditions and prepare directories for analysis.
+	Checks and sets up required directory structure, prompts for cleanup if needed.
+	"""
 	print("=======================Step 1: Condition Checking =======================")
 	print()
 	print("Need to check to make sure that the program will run correctly...")
@@ -77,9 +85,12 @@ def condchecking():
 		 print(Style.RESET_ALL)
 
 def projectcreation():
+	"""
+	Create a new project directory for analysis results.
+	User can provide a custom name or use an auto-generated one.
+	Returns the path to the created project directory.
+	"""
 	print("=========================Step 2: Project Creation=========================")
-	#userproj is either defined by user or 6 random digits
-	#This will create the file structure for the user's project
 
 	randominput = ''.join(random.choice(string.ascii_lowercase 
 		+ string.digits) for _ in range(6))
@@ -110,10 +121,12 @@ def projectcreation():
 	return projectdir
 
 def exifrun():
+	"""
+	Execute ExifTool to extract metadata from files in the media directory.
+	Generates JSON, HTML, and hexadecimal dump outputs for comprehensive analysis.
+	"""
 	print("=======================Step 3: Running the Exiftool=======================")
 	print()
-	#Runs exiftool on media/ directory to exifdata/ then runs
-	#jsonsort to sort the json into designated folders
 
 	print("This is going to run the exiftool on all of the media you defined here:")
 	print(Fore.BLUE + ROOT_DIR + "/media")
@@ -149,11 +162,13 @@ def exifrun():
 
 
 def filtering():
+	"""
+	Sort and filter extracted metadata.
+	Organizes JSON files by file type and applies intelligent filtering
+	to extract only the most relevant metadata tags.
+	"""
 	print("=============================Step 4: Filtering=============================")
 	print()
-	#This will...
-	#1) Sort the JSON into their respective folder
-	#2) Filter out the "unimportant tags"
 
 	jsondir = ROOT_DIR + "/exifdata/json/"
 	jsonsubdirs = ['odp', 'png', 'mp3', 'dll', 'torrent', 'pptx', 'ods', 'odt,' 'zip', 'exe',
@@ -196,6 +211,18 @@ def filtering():
 
 
 def makereport(PROJ_DIR):
+	"""
+	Generate comprehensive HTML reports and organize project directory.
+	
+	Creates multiple report views:
+	- Statistics dashboard
+	- Filtered metadata view
+	- Raw metadata view
+	- Hexadecimal dump view
+	
+	Args:
+		PROJ_DIR: Path to the project directory where reports will be saved
+	"""
 	print("=========================Step 5: Make Report=========================")
 	print()
 	print("This will make the HTML reports and set up the User Project directory")
@@ -203,7 +230,11 @@ def makereport(PROJ_DIR):
 	input("Press [ENTER] to continue")
 	print()
 
-	def copyfolders(src,dest):
+	def copyfolders(src, dest):
+		"""
+		Copy directory tree from source to destination.
+		Handles both directories and individual files.
+		"""
 		try:
 			shutil.copytree(src,dest)
 		except OSERROR as exc:
@@ -317,6 +348,10 @@ def makereport(PROJ_DIR):
 	sys.exit(0)
 
 def main():
+	"""
+	Main application entry point.
+	Executes the complete metadata analysis workflow.
+	"""
 	credits()
 	condchecking()
 	PROJ_DIR = projectcreation()

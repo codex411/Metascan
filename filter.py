@@ -5,23 +5,29 @@ from os.path import basename
 import os, sys
 import shutil
 
-'''
-These will filter the JSON files and sort them into useful categories.
-Each function is a file extension.
+"""
+Metadata filtering module for extracting relevant tags from JSON metadata files.
 
-1) Load Filter
-2) Load Metadata
-3) Compare each line of Metadata to Filter (tuple)
-4) Print Similarities
+Each filter function corresponds to a specific file type and extracts only
+the most important and useful metadata tags, reducing noise in reports.
 
-IMPORTANT: Always include the name of the file in the filtered tags as a tuple
-https://www.miniwebtool.com/remove-line-breaks/
-'''
+Filtering Process:
+1. Load predefined tag filter (tuple of important tags)
+2. Load metadata JSON file
+3. Compare each metadata line against filter tags
+4. Write matching tags to filtered output
+
+Note: Each file type has a curated list of tags that are most relevant
+for OSINT and forensic analysis purposes.
+"""
 
 dest = ROOT_DIR + "/exifdata/filtered/"
 
 def JPEGfilter():
-	#Load list of tags as a tuple 
+	"""
+	Filter JPEG image metadata to extract only relevant OSINT tags.
+	Includes EXIF, GPS, camera, and software information.
+	""" 
 	jpegtags = ('Adobe:APP14Flags0',  'Adobe:DCTEncodeVersion',  'Composite:CircleOfConfusion',  'Composite:FocalLength35efl',
 	  'Composite:FOV',  'Composite:GPSDateTime',  'Composite:GPSLatitude',  'Composite:GPSLongitude',  'Composite:GPSPosition', 
 	  'Composite:HyperfocalDistance',  'Composite:ImageSize',  'Composite:LensID',  'Composite:ShutterSpeed',  'Composite:SubSecCreateDate',  

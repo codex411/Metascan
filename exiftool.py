@@ -9,13 +9,18 @@ from definitions import ROOT_DIR
 import shutil
 from progress.bar import Bar
 
-#This is the exiftool processor, it runs exiftool and puts the outputs in either 
-#html, json or XML depending on which function is called. Exiftool needs to be installed for this
-#to work.
+"""
+ExifTool integration module for metadata extraction.
+Processes files and outputs metadata in JSON, HTML, and hexadecimal formats.
+Requires ExifTool to be installed on the system.
+"""
 
 
-#exiftool in JSON			
 def exifJSON():
+	"""
+	Extract metadata from files in the media directory and output as JSON.
+	Progress bar indicates processing status.
+	"""
 	print("Running exiftool to JSON")
 	os.chdir(ROOT_DIR + "/media/")
 	mediadir = os.listdir()
@@ -37,8 +42,11 @@ def exifJSON():
 		break
 	jsonbar.finish()
 
-#exiftool in HTML
 def exifHTML():
+	"""
+	Extract metadata from files and output as HTML format.
+	Progress bar indicates processing status.
+	"""
 	print("Running exiftool to HTML")
 	os.chdir(ROOT_DIR + "/media/")
 	mediadir = os.listdir()
@@ -57,8 +65,11 @@ def exifHTML():
 		break
 	htmlbar.finish()
 
-#exiftool hex dump to html
 def exifHTMLDump():
+	"""
+	Extract hexadecimal dump of file metadata and output as HTML.
+	Useful for deep binary analysis and forensic examination.
+	"""
 	print("Running exiftool to HTML Dump")
 	os.chdir(ROOT_DIR + "/media/")
 	mediadir = os.listdir()
