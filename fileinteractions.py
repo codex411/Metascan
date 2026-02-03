@@ -8,9 +8,10 @@ from colorama import Fore, Back, Style
 
 
 def stageset():
-
-	#This fuction checks to make sure that the exifdata directory is set correctly
-	#It creates folders that need to be there
+	"""
+	Initialize and verify the exifdata directory structure.
+	Creates all necessary subdirectories for metadata processing.
+	"""
 	
 	exifdatadir = ROOT_DIR + "/exifdata/"
 	filtereddir = ROOT_DIR + "/exifdata/filtered/"
@@ -65,9 +66,11 @@ def stageset():
 			os.mkdir(jsondir + filetype)
 
 
-#This function will check to see if the exifdata/ directory and the exifdata/json/ are empty
-#if it isn't it will prompt the user to delete them or not
 def checkdelete():
+	"""
+	Check if exifdata directories contain files from previous runs.
+	Prompts user to clean up old data to prevent conflicts.
+	"""
 	jsonpath = ROOT_DIR + "/exifdata/json/"
 	filteredjsonpath = ROOT_DIR + "/exifdata/filtered/" 
 	jsonsubdirs = ['odp', 'odt', 'png', 'mp3', 'dll', 'torrent', 'pptx', 'ods', 'zip', 'exe',
@@ -144,8 +147,11 @@ def checkdelete():
 				pass
 
 
-#This function sorts the json files into their respective folder based on file extension
 def jsonsort():
+	"""
+	Sort JSON metadata files into type-specific directories based on file extension.
+	Handles legacy Microsoft Office formats by mapping them to modern equivalents.
+	"""
 
 	docs = ["docx", "doc", "DOC", "DOCX"]
 	excel = ["xlsx", "xls", "XLSX", "XLS"]

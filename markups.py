@@ -11,22 +11,24 @@ from os import listdir
 from os.path import isfile, join
 
 def statshtml():
-# This will display stats about the files
-# Some stats to include will be...
-# 1) Number of file types (graph too) 
-# 2) Geolocations with map (maybe?)
-# 3) Filtered vs. unfiltered meta
-# 4) File Size Graph?
-# 5) Software
-# 6) Device/manufact. model
-# 7) Top 5 largest files
-# Then Generate the html report
-
-	# ADD CUSTOM TAGS HERE:
-	# The best way to look for tags is to run exiftool -j -G <filename> 
-	# FORMAT: add "" and a comma to separate them. Example: "Composite:GPSPosition","EXIF:GPSAltitude"
-	# 
-	# Leave the PLACEHOLDER there
+	"""
+	Generate comprehensive statistics HTML report.
+	
+	Creates a dashboard with:
+	- File type distribution
+	- Largest files analysis
+	- Geolocation data extraction
+	- Software and device identification
+	- Author/creator information
+	- Custom tag analysis
+	- Raw vs. filtered metadata comparison
+	"""
+	
+	# CUSTOM TAGS CONFIGURATION
+	# To add custom tags for analysis:
+	# 1. Run: exiftool -j -G <filename> to identify available tags
+	# 2. Add tags in the format: "Tag:Name", "Another:Tag"
+	# 3. Remove PLACEHOLDER entries when adding real tags
 
 
 
@@ -276,7 +278,7 @@ def statshtml():
 	# HTML REPORT GENERATION
 	# THIS MAKES THE INDEX/STATS PAGE
 	os.chdir(ROOT_DIR)
-	doc = dominate.document(title='Metaforge')
+	doc = dominate.document(title='Metascan')
 
 	#Creates <head>
 	with doc.head:
@@ -291,9 +293,9 @@ def statshtml():
 			img(src='Template_Data/img/title.png')
 			img(id='logo',src='Template_Data/img/logo.png')
 			h2("Home/Statistics")
-			with div(id='metaforge-credits'):
+			with div(id='metascan-credits'):
 				p("Created by Chris Morris and Collin Mockbee")
-				p("https://github.com/chriswmorris/Metaforge")
+				p("https://github.com/yourusername/metascan")
 			br()
 		with div(id= 'wrapper'):
 			with div(id='navbar').add(ul()):
@@ -436,8 +438,13 @@ def statshtml():
 
 
 def filtershtml():
+	"""
+	Generate filtered metadata HTML report.
+	Displays only the most relevant and important metadata tags,
+	organized by file for easy review.
+	"""
 	os.chdir(ROOT_DIR)
-	doc = dominate.document(title='Metaforge')
+	doc = dominate.document(title='Metascan')
 
 	#Creates <head>
 	with doc.head:
@@ -451,9 +458,9 @@ def filtershtml():
 			img(src='Template_Data/img/title.png')
 			img(id='logo',src='Template_Data/img/logo.png')
 			h2("Home/Statistics")
-			with div(id='metaforge-credits'):
+			with div(id='metascan-credits'):
 				p("Created by Chris Morris and Collin Mockbee")
-				p("https://github.com/chriswmorris/Metaforge")
+				p("https://github.com/yourusername/metascan")
 			br()
 		with div(id= 'wrapper'):
 			with div(id='navbar').add(ul()):
@@ -503,9 +510,13 @@ def filtershtml():
 
 
 def rawmetahtml():
-	#This creates HTML document with dominate 
+	"""
+	Generate raw metadata HTML report.
+	Displays complete, unfiltered metadata extraction for all files,
+	useful for comprehensive analysis and verification.
+	""" 
 	os.chdir(ROOT_DIR)
-	doc = dominate.document(title='Metaforge')
+	doc = dominate.document(title='Metascan')
 
 	#Creates <head>
 	with doc.head:
@@ -519,9 +530,9 @@ def rawmetahtml():
 			img(src='Template_Data/img/title.png')
 			img(id='logo',src='Template_Data/img/logo.png')
 			h2("Home/Statistics")
-			with div(id='metaforge-credits'):
+			with div(id='metascan-credits'):
 				p("Created by Chris Morris and Collin Mockbee")
-				p("https://github.com/chriswmorris/Metaforge")
+				p("https://github.com/yourusername/metascan")
 			br()
 		with div(id= 'wrapper'):
 			with div(id='navbar').add(ul()):
@@ -551,8 +562,12 @@ def rawmetahtml():
 
 
 def hexmetahtml():
+	"""
+	Generate hexadecimal dump HTML report.
+	Provides binary-level view of file metadata for deep forensic analysis.
+	"""
 	os.chdir(ROOT_DIR)
-	doc = dominate.document(title='Metaforge')
+	doc = dominate.document(title='Metascan')
 
 	#Creates <head>
 	with doc.head:
@@ -566,9 +581,9 @@ def hexmetahtml():
 			img(src='Template_Data/img/title.png')
 			img(id='logo',src='Template_Data/img/logo.png')
 			h2("Home/Statistics")
-			with div(id='metaforge-credits'):
+			with div(id='metascan-credits'):
 				p("Created by Chris Morris and Collin Mockbee")
-				p("https://github.com/chriswmorris/Metaforge")
+				p("https://github.com/yourusername/metascan")
 			br()
 		with div(id= 'wrapper'):
 			with div(id='navbar').add(ul()):
